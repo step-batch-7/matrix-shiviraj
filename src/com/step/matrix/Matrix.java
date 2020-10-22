@@ -44,7 +44,7 @@ public class Matrix {
     Matrix otherMatrix = (Matrix)other;
     if(otherMatrix.noOfRows != this.noOfRows) return false;
 
-    for(int index = 0; index < this.matrix.length; index++){
+    for(int index = 0; index < this.noOfRows; index++){
       Array otherRow = otherMatrix.getRow(index);
       Array row = this.matrix[index];
       if(!otherRow.equals(row)) return false;
