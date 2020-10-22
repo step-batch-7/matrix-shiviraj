@@ -15,28 +15,12 @@ public class ArrayTest{
 
   @Test
   public void length(){
-    assertEquals("Should give the length of the array", 3, this.array.length());
+    assertEquals("Should give the length of the array", 3, this.array.length);
   }
 
   @Test
   public void getElement(){
     assertEquals("Should give the element of given index", 3, this.array.getElement(2));
-  }
-
-  @Test
-  public void isEqualLength(){
-    int[] numbers = {1,2,3};
-    Array array = new Array(numbers);
-    boolean actual = this.array.isEqualLength(array);
-    assertEquals("Should give the true for equals length of array", true, actual);
-  }
-
-  @Test
-  public void shouldGiveFalseIsEqualLength(){
-    int[] numbers = {1,2};
-    Array array = new Array(numbers);
-    boolean actual = this.array.isEqualLength(array);
-    assertEquals("Should give false for unequal length of array", false, actual);
   }
 
   @Test

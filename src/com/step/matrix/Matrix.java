@@ -7,26 +7,18 @@ public class Matrix {
   private int noOfCols;
 
   public Matrix(int[][] other){
-    matrix = new Array[other.length];
-
+    this.matrix = new Array[other.length];
     for(int rowNo = 0; rowNo < other.length; rowNo++){
-      matrix[rowNo] = new Array(other[rowNo]);
+      Array row = new Array(other[rowNo]);
+      this.matrix[rowNo] = row;
     }
 
     this.noOfRows = other.length;
-    this.noOfCols = this.matrix[0].length();
+    this.noOfCols = this.matrix[0].length;
   }
 
   private Array row(int index){
     return this.matrix[index];
-  }
-
-  private int rowNo(){
-    return this.matrix.length;
-  }
-
-  private int colNo(){
-    return this.matrix[0].length();
   }
 
   private Array getRow(int index) {
@@ -38,9 +30,7 @@ public class Matrix {
     StringBuilder str = new StringBuilder("Matrix ");
     str.append("[\n");
     for(Array row : matrix){
-      str.append("\t");
-      str.append(row);
-      str.append("\n");
+      str.append("\t" + row + "\n");
     }
     str.append("]");
     return new String(str);
@@ -64,17 +54,17 @@ public class Matrix {
   }
 
   public Matrix add(Matrix other){
-    if(other.rowNo() != this.rowNo() || other.colNo() != this.colNo()){
+    if(other.noOfRows != this.noOfRows || other.noOfCols != this.noOfCols){
       return null;
     }
 
     int[][] matrixSum;
-    matrixSum = new int[this.rowNo()][this.colNo()];
+    matrixSum = new int[this.noOfRows][this.noOfCols];
 
     for(int rowNo = 0; rowNo < this.noOfRows; rowNo++){
       Array row = this.row(rowNo);
       Array otherRow = other.row(rowNo);
-      for(int colNo = 0; colNo < row.length(); colNo++){
+      for(int colNo = 0; colNo < row.length; colNo++){
         matrixSum[rowNo][colNo] = row.getElement(colNo) + otherRow.getElement(colNo);
       }
     }
@@ -82,17 +72,17 @@ public class Matrix {
   }
 
   public Matrix subtract(Matrix other){
-    if(other.rowNo() != this.rowNo() || other.colNo() != this.colNo()){
+    if(other.noOfRows != this.noOfRows || other.noOfCols != this.noOfCols){
       return null;
     }
 
     int[][] matrixSum;
-    matrixSum = new int[this.rowNo()][this.colNo()];
+    matrixSum = new int[this.noOfRows][this.noOfCols];
 
     for(int rowNo = 0; rowNo < this.noOfRows; rowNo++){
       Array row = this.row(rowNo);
       Array otherRow = other.row(rowNo);
-      for(int colNo = 0; colNo < row.length(); colNo++){
+      for(int colNo = 0; colNo < row.length; colNo++){
         matrixSum[rowNo][colNo] = row.getElement(colNo) - otherRow.getElement(colNo);
       }
     }
@@ -100,7 +90,7 @@ public class Matrix {
   }
 
   public Matrix multiply(Matrix other){
-    if(other.rowNo() != this.colNo() || other.colNo() != this.rowNo()){
+    if(other.noOfRows != this.noOfCols || other.noOfCols != this.noOfRows){
       return null;
     }
 
@@ -111,7 +101,7 @@ public class Matrix {
       Array row = this.row(rowNo);
       for(int colNo = 0; colNo < this.noOfCols; colNo++){
         int result = 0;
-        for(int index = 0; index < row.length(); index++){
+        for(int index = 0; index < row.length; index++){
           Array otherRow = other.row(index);
           result += row.getElement(index) * otherRow.getElement(colNo);
         }
@@ -122,11 +112,11 @@ public class Matrix {
   }
 
   private Matrix createSubMatrix(int bisectorRowNo) {
-    int[][] temp = new int[this.rowNo() - 1][this.colNo() - 1];
+    int[][] temp = new int[this.noOfRows - 1][this.noOfCols - 1];
 
-    for (int rowNo = 1; rowNo < this.rowNo(); rowNo++) {
+    for (int rowNo = 1; rowNo < this.noOfRows; rowNo++) {
       Array row = this.row(rowNo);
-      for (int colNo = 0; colNo < this.colNo(); colNo++) {
+      for (int colNo = 0; colNo < this.noOfCols; colNo++) {
         int element = row.getElement(colNo);
         if (colNo < bisectorRowNo) {
           temp[rowNo - 1][colNo] = element;
@@ -140,11 +130,11 @@ public class Matrix {
   }
 
   public int determinant() {
-    if (this.rowNo() == 1) {
+    if (this.noOfRows == 1) {
       return this.row(0).getElement(0);
     }
 
-    if (this.rowNo() == 2) {
+    if (this.noOfRows == 2) {
       return (
         (this.row(0).getElement(0) * this.row(1).getElement(1)) -
         (this.row(0).getElement(1) * this.row(1).getElement(0))
@@ -153,7 +143,7 @@ public class Matrix {
 
     int result = 0;
 
-    for (int i = 0; i < this.colNo(); i++) {
+    for (int i = 0; i < this.noOfCols; i++) {
       Matrix temp = this.createSubMatrix(i);
       result += this.row(0).getElement(i) * Math.pow(-1, i) * temp.determinant();
     }

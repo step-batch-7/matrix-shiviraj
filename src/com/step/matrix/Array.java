@@ -2,24 +2,18 @@ package com.step.matrix;
 
 public class Array{
   private int[] array;
+  public int length;
 
   public Array(int[] array) {
     this.array = new int[array.length];
     for(int index = 0; index < array.length; index++){
       this.array[index] = array[index];
     }
-  }
-
-  public int length() {
-    return this.array.length;
+    this.length = array.length;
   }
 
   public int getElement(int index) {
     return this.array[index];
-  }
-
-  public boolean isEqualLength(Array array) {
-    return this.array.length == array.length();
   }
 
   @Override
@@ -27,8 +21,7 @@ public class Array{
     StringBuilder sb = new StringBuilder("Array ");
     sb.append("[");
     for(int num: this.array){
-      sb.append(num);
-      sb.append(",");
+      sb.append(num + ", ");
     }
     sb.append("]");
     return new String(sb);
@@ -40,9 +33,9 @@ public class Array{
     if(!(other instanceof Array)) return false;
 
     Array otherArray = (Array)other;
-    if(otherArray.length() != this.array.length) return false;
+    if(otherArray.length != this.length) return false;
 
-    for(int index = 0; index < this.array.length; index++){
+    for(int index = 0; index < this.length; index++){
       if(otherArray.getElement(index) != this.array[index]) return false;
     }
 
