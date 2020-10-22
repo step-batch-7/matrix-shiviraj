@@ -1,49 +1,47 @@
 package com.step.matrix;
 
 import static org.junit.Assert.assertEquals;
+import org.junit.Before;
 import org.junit.Test;
 
 public class MatrixTest{
+  private Matrix matrix1;
+  private Matrix matrix2;
+
+  @Before
+  public void setUpMatrix() {
+    int[][] numbers1 = {{1,2,3},{3,4,5},{1,2,3}};
+    int[][] numbers2 = {{1,2,3},{3,4,5},{1,2,3}};
+    this.matrix1 = new Matrix(numbers1);
+    this.matrix2 = new Matrix(numbers2);
+  }
+
   @Test
   public void addMatrix(){
-    int[][] numbers1 = {{1,2,3},{3,4,5}};
-    int[][] numbers2 = {{1,2,3},{3,4,5}};
-    int[][] numbers3 = {{2,4,6},{6,8,10}};
-    Matrix matrix1 = new Matrix(numbers1);
-    Matrix matrix2 = new Matrix(numbers2);
-    Matrix sumMatrix = matrix1.add(matrix2);
+    int[][] numbers3 = {{2,4,6},{6,8,10},{2,4,6}};
+    Matrix actual = this.matrix1.add(this.matrix2);
     Matrix expected = new Matrix(numbers3);
-    assertEquals(expected, sumMatrix);
+    assertEquals("Should add two matrix", expected, actual);
   }
 
   @Test
   public void subtractMatrix(){
-    int[][] numbers1 = {{10,12,15},{11,12,15}};
-    int[][] numbers2 = {{1,2,3},{3,4,5}};
-    int[][] numbers3 = {{9,10,12},{8,8,10}};
-    Matrix matrix1 = new Matrix(numbers1);
-    Matrix matrix2 = new Matrix(numbers2);
-    Matrix subMatrix = matrix1.subtract(matrix2);
+    int[][] numbers3 = {{0,0,0},{0,0,0},{0,0,0}};
+    Matrix actual = this.matrix1.subtract(this.matrix2);
     Matrix expected = new Matrix(numbers3);
-    assertEquals(expected, subMatrix);
+    assertEquals("Should subtract one matrix from another matrix", expected, actual);
   }
 
   @Test
   public void productMatrix(){
-    int[][] numbers1 = {{1,2,3},{1,2,5}};
-    int[][] numbers2 = {{1,2},{3,4},{2,4}};
-    int[][] numbers3 = {{13,22},{17,30}};
-    Matrix matrix1 = new Matrix(numbers1);
-    Matrix matrix2 = new Matrix(numbers2);
-    Matrix prodMatrix = matrix1.multiply(matrix2);
+    int[][] numbers3 = {{10,16,22},{20,32,44},{10,16,22}};
+    Matrix actual = this.matrix1.multiply(this.matrix2);
     Matrix expected = new Matrix(numbers3);
-    assertEquals(expected, prodMatrix);
+    assertEquals("Should calculate the product of two matrix", expected, actual);
   }
 
   @Test
   public void shouldGiveDeterminantOfMatrix() {
-    int[][] numbers = {{1,2,3},{1,2,3},{1,2,3}};
-    Matrix matrix = new Matrix(numbers);
-    assertEquals(0, matrix.determinant());
+    assertEquals("Should calculate the determinant of matrix", 0, this.matrix1.determinant());
   }
 }

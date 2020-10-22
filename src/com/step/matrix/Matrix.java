@@ -3,16 +3,18 @@ import com.step.matrix.Array;
 
 public class Matrix {
   private Array[] matrix;
+  private int noOfRows;
+  private int noOfCols;
 
   public Matrix(int[][] other){
     matrix = new Array[other.length];
+
     for(int rowNo = 0; rowNo < other.length; rowNo++){
       matrix[rowNo] = new Array(other[rowNo]);
     }
-  }
 
-  private int length() {
-    return this.matrix.length;
+    this.noOfRows = other.length;
+    this.noOfCols = this.matrix[0].length();
   }
 
   private Array row(int index){
@@ -50,7 +52,7 @@ public class Matrix {
     if(!(other instanceof Matrix)) return false;
 
     Matrix otherMatrix = (Matrix)other;
-    if(otherMatrix.length() != this.matrix.length) return false;
+    if(otherMatrix.noOfRows != this.noOfRows) return false;
 
     for(int index = 0; index < this.matrix.length; index++){
       Array otherRow = otherMatrix.getRow(index);
@@ -69,7 +71,7 @@ public class Matrix {
     int[][] matrixSum;
     matrixSum = new int[this.rowNo()][this.colNo()];
 
-    for(int rowNo = 0; rowNo < this.length(); rowNo++){
+    for(int rowNo = 0; rowNo < this.noOfRows; rowNo++){
       Array row = this.row(rowNo);
       Array otherRow = other.row(rowNo);
       for(int colNo = 0; colNo < row.length(); colNo++){
@@ -87,7 +89,7 @@ public class Matrix {
     int[][] matrixSum;
     matrixSum = new int[this.rowNo()][this.colNo()];
 
-    for(int rowNo = 0; rowNo < this.length(); rowNo++){
+    for(int rowNo = 0; rowNo < this.noOfRows; rowNo++){
       Array row = this.row(rowNo);
       Array otherRow = other.row(rowNo);
       for(int colNo = 0; colNo < row.length(); colNo++){
@@ -103,14 +105,11 @@ public class Matrix {
     }
 
     int[][] matrixSum;
-    int totalRow = this.length();
-    int totalCol = other.row(1).length();
+    matrixSum = new int[this.noOfRows][this.noOfCols];
 
-    matrixSum = new int[totalRow][totalCol];
-
-    for(int rowNo = 0; rowNo < totalRow; rowNo++){
+    for(int rowNo = 0; rowNo < this.noOfRows; rowNo++){
       Array row = this.row(rowNo);
-      for(int colNo = 0; colNo < totalCol; colNo++){
+      for(int colNo = 0; colNo < this.noOfCols; colNo++){
         int result = 0;
         for(int index = 0; index < row.length(); index++){
           Array otherRow = other.row(index);
