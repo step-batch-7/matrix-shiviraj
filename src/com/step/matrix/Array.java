@@ -14,7 +14,7 @@ public class Array{
     return this.array.length;
   }
 
-  public int getElelment(int index) {
+  public int getElement(int index) {
     return this.array[index];
   }
 
@@ -43,7 +43,7 @@ public class Array{
     if(otherArray.length() != this.array.length) return false;
 
     for(int index = 0; index < this.array.length; index++){
-      if(otherArray.getElelment(index) != this.array[index]) return false;
+      if(otherArray.getElement(index) != this.array[index]) return false;
     }
 
     return true;

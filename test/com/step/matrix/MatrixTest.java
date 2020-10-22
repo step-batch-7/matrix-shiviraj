@@ -39,4 +39,11 @@ public class MatrixTest{
     Matrix expected = new Matrix(numbers3);
     assertEquals(expected, prodMatrix);
   }
+
+  @Test
+  public void shouldGiveDeterminantOfMatrix() {
+    int[][] numbers = {{1,2,3},{1,2,3},{1,2,3}};
+    Matrix matrix = new Matrix(numbers);
+    assertEquals(0, matrix.determinant());
+  }
 }

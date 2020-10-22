@@ -15,7 +15,7 @@ public class ArrayTest{
   public void getElelment(){
     int[] numbers = {1,2,3};
     Array array = new Array(numbers);
-    assertEquals(3, array.getElelment(2));
+    assertEquals(3, array.getElement(2));
   }
 
   @Test
