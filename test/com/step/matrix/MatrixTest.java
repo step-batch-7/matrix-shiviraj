@@ -20,45 +20,45 @@ public class MatrixTest{
   }
 
   @Test
-  public void addMatrix(){
+  public void shouldAddTwoMatrices(){
     int[][] numbers3 = {{2,4,6},{6,8,10},{2,4,6}};
     Matrix actual = this.matrix1.add(this.matrix2);
     Matrix expected = new Matrix(numbers3);
-    assertEquals("Should add two matrix", expected, actual);
+    assertEquals(expected, actual);
   }
 
   @Test
-  public void shouldNotCalculateSumOfUnEqual(){
+  public void shouldGiveNullSumOfUnEqualLengthMatrices(){
     int[][] numbers3 = {{2,4,6},{6,8,10},{2,4,6}};
     Matrix actual = this.matrix1.add(this.matrix3);
-    assertNull("Should not add two matrix", actual);
+    assertNull(actual);
   }
 
   @Test
-  public void subtractMatrix(){
+  public void shouldGiveSubtractOfTwoMatrices(){
     int[][] numbers3 = {{0,0,0},{0,0,0},{0,0,0}};
     Matrix actual = this.matrix1.subtract(this.matrix2);
     Matrix expected = new Matrix(numbers3);
-    assertEquals("Should subtract one matrix from another matrix", expected, actual);
+    assertEquals(expected, actual);
   }
 
   @Test
-  public void shouldNotCalculateSubtractOfUnEqual(){
+  public void shouldGiveNullSubtractOfUnEqualLengthMatrices(){
     int[][] numbers3 = {{2,4,6},{6,8,10},{2,4,6}};
     Matrix actual = this.matrix1.subtract(this.matrix3);
-    assertNull("Should not add two matrix", actual);
+    assertNull(actual);
   }
 
   @Test
-  public void productMatrix(){
+  public void shouldMultiplyTwoMatrices(){
     int[][] numbers3 = {{10,16,22},{20,32,44},{10,16,22}};
     Matrix actual = this.matrix1.multiply(this.matrix2);
     Matrix expected = new Matrix(numbers3);
-    assertEquals("Should calculate the product of two matrix", expected, actual);
+    assertEquals(expected, actual);
   }
 
   @Test
   public void shouldGiveDeterminantOfMatrix() {
-    assertEquals("Should calculate the determinant of matrix", 0, this.matrix1.determinant());
+    assertEquals(0, this.matrix1.determinant());
   }
 }

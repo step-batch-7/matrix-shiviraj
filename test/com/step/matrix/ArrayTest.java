@@ -14,27 +14,27 @@ public class ArrayTest{
   }
 
   @Test
-  public void length(){
-    assertEquals("Should give the length of the array", 3, this.array.length);
+  public void shouldGiveArrayLength(){
+    assertEquals(3, this.array.length);
   }
 
   @Test
-  public void getElement(){
-    assertEquals("Should give the element of given index", 3, this.array.getElement(2));
+  public void shouldGiveElementOfGivenIndex(){
+    assertEquals(3, this.array.getElement(2));
   }
 
   @Test
-  public void equals(){
+  public void shouldGiveTrueForEqualArrays(){
     int[] numbers = {1,2,3};
     Array array = new Array(numbers);
-    assertTrue("Should give true for equal arrays", this.array.equals(array));
+    assertTrue(this.array.equals(array));
   }
 
   @Test
   public void shouldGiveFalseForTwoUnequalsArray(){
     int[] numbers = {1,2};
     Array array = new Array(numbers);
-    assertFalse("Should give false for unequal array", this.array.equals(array));
+    assertFalse(this.array.equals(array));
   }
 
 }
