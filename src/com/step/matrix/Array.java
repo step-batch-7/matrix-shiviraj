@@ -1,30 +1,17 @@
 package com.step.matrix;
 
 public class Array{
-  private int[] array;
-  public int length;
+  private final int[] array;
+  public final int length;
 
   public Array(int[] array) {
-    this.array = new int[array.length];
-    for(int index = 0; index < array.length; index++){
-      this.array[index] = array[index];
-    }
     this.length = array.length;
+    this.array = new int[this.length];
+    System.arraycopy(array, 0, this.array, 0, this.length);
   }
 
   public int getElement(int index) {
     return this.array[index];
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder("Array ");
-    sb.append("[");
-    for(int num: this.array){
-      sb.append(num + ", ");
-    }
-    sb.append("]");
-    return new String(sb);
   }
 
   @Override
@@ -40,5 +27,16 @@ public class Array{
     }
 
     return true;
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder("Array ");
+    sb.append("[");
+    for(int num: this.array){
+      sb.append(num).append(", ");
+    }
+    sb.append("]");
+    return new String(sb);
   }
 }

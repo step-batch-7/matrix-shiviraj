@@ -5,60 +5,47 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MatrixTest{
-  private Matrix matrix1;
-  private Matrix matrix2;
-  private Matrix matrix3;
-
-  @Before
-  public void setUpMatrix() {
-    int[][] numbers1 = {{1,2,3},{3,4,5},{1,2,3}};
-    int[][] numbers2 = {{1,2,3},{3,4,5},{1,2,3}};
-    int[][] numbers3 = {{1,2,3},{3,4,5}};
-    this.matrix1 = new Matrix(numbers1);
-    this.matrix2 = new Matrix(numbers2);
-    this.matrix3 = new Matrix(numbers3);
-  }
-
   @Test
   public void shouldAddTwoMatrices(){
-    int[][] numbers3 = {{2,4,6},{6,8,10},{2,4,6}};
-    Matrix actual = this.matrix1.add(this.matrix2);
-    Matrix expected = new Matrix(numbers3);
-    assertEquals(expected, actual);
+    Matrix matrix = new Matrix(new int[][] {{1,2,3},{3,4,5},{1,2,3}});
+    Matrix matrix1 = new Matrix(new int[][] {{1,2,3},{3,4,5},{1,2,3}});
+    Matrix expected = new Matrix(new int[][]{{2,4,6},{6,8,10},{2,4,6}});
+    assertEquals(expected, matrix.add(matrix1));
   }
 
   @Test
   public void shouldGiveNullSumOfUnEqualLengthMatrices(){
-    int[][] numbers3 = {{2,4,6},{6,8,10},{2,4,6}};
-    Matrix actual = this.matrix1.add(this.matrix3);
-    assertNull(actual);
+    Matrix matrix = new Matrix(new int[][] {{1,2,3},{3,4,5},{1,2,3}});
+    Matrix matrix1 = new Matrix(new int[][] {{1,2,3},{3,4,5}});
+    assertEquals(null, matrix.add(matrix1));
   }
 
   @Test
   public void shouldGiveSubtractOfTwoMatrices(){
-    int[][] numbers3 = {{0,0,0},{0,0,0},{0,0,0}};
-    Matrix actual = this.matrix1.subtract(this.matrix2);
-    Matrix expected = new Matrix(numbers3);
-    assertEquals(expected, actual);
+    Matrix matrix = new Matrix(new int[][] {{1,2,3},{3,4,5},{1,2,3}});
+    Matrix matrix1 = new Matrix(new int[][] {{1,2,3},{3,4,5},{1,2,3}});
+    Matrix expected = new Matrix(new int[][]{{0,0,0},{0,0,0},{0,0,0}});
+    assertEquals(expected, matrix.subtract(matrix1));
   }
 
   @Test
   public void shouldGiveNullSubtractOfUnEqualLengthMatrices(){
-    int[][] numbers3 = {{2,4,6},{6,8,10},{2,4,6}};
-    Matrix actual = this.matrix1.subtract(this.matrix3);
-    assertNull(actual);
+    Matrix matrix = new Matrix(new int[][] {{1,2,3},{3,4,5},{1,2,3}});
+    Matrix matrix1 = new Matrix(new int[][] {{1,2,3},{3,4,5}});
+    assertEquals(null, matrix.subtract(matrix1));
   }
 
   @Test
   public void shouldMultiplyTwoMatrices(){
-    int[][] numbers3 = {{10,16,22},{20,32,44},{10,16,22}};
-    Matrix actual = this.matrix1.multiply(this.matrix2);
-    Matrix expected = new Matrix(numbers3);
-    assertEquals(expected, actual);
+    Matrix matrix = new Matrix(new int[][] {{1,2,3},{3,4,5},{1,2,3}});
+    Matrix matrix1 = new Matrix(new int[][] {{1,2,3},{3,4,5},{1,2,3}});
+    Matrix expected = new Matrix(new int[][]{{10,16,22},{20,32,44},{10,16,22}});
+    assertEquals(expected, matrix.multiply(matrix1));
   }
 
   @Test
   public void shouldGiveDeterminantOfMatrix() {
-    assertEquals(0, this.matrix1.determinant());
+    Matrix matrix = new Matrix(new int[][] {{1,2,3},{3,4,5},{1,2,3}});
+    assertEquals(0, matrix.determinant());
   }
 }

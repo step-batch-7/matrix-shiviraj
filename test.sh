@@ -1,3 +1,4 @@
+set -eu
 rm -rf out
 mkdir -p out
 echo "Compiling"
