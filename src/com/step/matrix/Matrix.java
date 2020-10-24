@@ -16,6 +16,15 @@ public class Matrix {
     this.noOfCols = this.row(0).length;
   }
 
+  public static Matrix create(int[][] matrix){
+    for(int rowNo = 0; rowNo < matrix.length; rowNo++){
+      if(matrix[rowNo].length != matrix[0].length){
+        return null;
+      };
+    }
+
+    return new Matrix(matrix);
+  }
 
   public Matrix add(Matrix other){
     if(!areDimentionsEqual(other)) return null;
@@ -51,7 +60,7 @@ public class Matrix {
     }
 
     int[][] matrixProduct;
-    matrixProduct = new int[this.noOfRows][this.noOfCols];
+    matrixProduct = new int[this.noOfRows][other.noOfCols];
 
     for(int rowNo = 0; rowNo < this.noOfRows; rowNo++){
       Array row = this.row(rowNo);
@@ -65,8 +74,6 @@ public class Matrix {
     }
     return new Matrix(matrixProduct);
   }
-
-
 
   public int determinant() {
     if (this.noOfRows == 1) return this.getElement(0, 0);
@@ -103,9 +110,8 @@ public class Matrix {
     int[][] temp = new int[this.noOfRows - 1][this.noOfCols - 1];
 
     for (int rowNo = 1; rowNo < this.noOfRows; rowNo++) {
-      Array row = this.row(rowNo);
       for (int colNo = 0; colNo < this.noOfCols; colNo++) {
-        int element = row.getElement(colNo);
+        int element = this.getElement(rowNo, colNo);
         if (colNo < bisectorRowNo) {
           temp[rowNo - 1][colNo] = element;
         }

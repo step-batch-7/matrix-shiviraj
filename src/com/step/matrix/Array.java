@@ -23,7 +23,7 @@ public class Array{
     if(otherArray.length != this.length) return false;
 
     for(int index = 0; index < this.length; index++){
-      if(otherArray.getElement(index) != this.array[index]) return false;
+      if(otherArray.getElement(index) != this.getElement(index)) return false;
     }
 
     return true;
